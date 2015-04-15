@@ -1,0 +1,88 @@
+/**
+ * @copyright	Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+/* System Messages */
+#system-message {
+	margin-bottom: 10px;
+	padding: 0;
+}
+
+#system-message > dt {
+	font-weight: bold;
+	display: none;
+}
+
+#system-message > dd {
+	margin: 0;
+	font-weight: bold;
+	/*text-indent: 30px;*/
+}
+
+#system-message > dd > ul {
+	color: #0055BB;
+	background-position: 4px 6px;
+	background-repeat: no-repeat;
+	margin-bottom: 10px;
+	list-style: none;
+	padding: 10px;
+    padding-left: 40px;
+	border-top: 3px solid #84A7DB;
+	border-bottom: 3px solid #84A7DB;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+/*    border: 1px solid #84A7DB;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;*/
+}
+
+#system-message > dd > ul > li {
+	line-height: 1.5em;
+}
+
+/* System Standard Messages */
+#system-message > .message > ul {
+	background-color: #C3D2E5;
+	background-image: url(../../img/notice-info.png);
+}
+
+/* System Error Messages */
+#system-message > .error > ul,
+#system-message > .warning > ul,
+#system-message > .notice > ul {
+	color: #c00;
+}
+
+#system-message > .error > ul {
+	background-color: #E6C0C0;
+	background-image: url(../../img/notice-error.png);
+	border-color: #DE7A7B;
+}
+
+/* System Warning Messages */
+#system-message > .warning > ul {
+	background-color: #E6C8A6;
+	background-image: url(../../img/notice-warning.png);
+	border-color: #FFBB00;
+}
+
+/* System Notice Messages */
+#system-message > .success > ul {
+	background-image: url(../../img/notice-success.png);
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+}
+
+/*#system-message > .info > ul {
+	background-image: url(../../img/notice-info.png);
+    background-color: #D9EDF7;
+    border-color: #BCE8F1;
+    color: #3A87AD;
+}*/
+
+#system-message-container > .close {
+    line-height: 45px;
+    margin-right: 10px;
+}
