@@ -6,9 +6,11 @@
  */
 
 $sizesArr = array(
-    '426x300' => 'Slideshow Intranet',
-    '625x384' => 'Slideshow Site',
-    '280x150' => 'Destaques Intranet',
+    '426x300' => '<font color="#0D4772">INTRANET</font> - Slideshow',
+    '280x150' => '<font color="#0D4772">INTRANET</font> - Destaques',
+    '625x384' => '<font color="#3276B1">SITE</font> - Slideshow',
+    '435x260' => '<font color="#3276B1">SITE</font> - Cursos Capa',
+    '190x230' => '<font color="#3276B1">SITE</font> - Cursos Min',
     '199x115' => 'Newsletter normal',
     '299x115' => 'Newsletter larga'
 );
@@ -39,6 +41,9 @@ list($w, $h) = explode("x",$sizeGet);
 
         
         <style>
+            .list-group-item.active *, .list-group-item.active:hover *, .list-group-item.active:focus *{
+                color: #FFFFFF!important;
+            }
             .cropit-image-preview {
                 background-color: #f8f8f8;
                 background-size: cover;
