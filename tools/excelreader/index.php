@@ -6,10 +6,14 @@ require_once ('./lib/ReadFileXLS.php');
 ?>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br" dir="ltr" >
+<!DOCTYPE>
+<html lang="pt-br" dir="ltr" >
     <head>
-<!--        <meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=8; IE=9" />-->
+        <meta charset="utf-8" />
+		<!--<meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
+  		<meta name="author" content="Fabricio Farias" />
+
         <title>My Tools</title>
         
         <link rel="icon" type="image/x-icon" href="brazil.ico">
@@ -108,6 +112,55 @@ require_once ('./lib/ReadFileXLS.php');
                         
                         $rows = new ReadFileXLS(trim($path));
                         $rows = $rows->getDadosExcel();
+                        
+                        
+                        // foreach($rows as $k => $v){
+                                
+                        //         var_dump($v['funcao']);exit;
+                        //     }
+                        //     exit;
+						// echo '<pre>';
+                        // var_dump($rows);exit;
+                        
+						function utf8_converter($array)
+{
+							array_walk_recursive($array, function(&$item, $key){
+								if(!mb_detect_encoding($item, 'utf-8', true)){
+										$item = utf8_encode($item);
+								}
+							});
+						 
+							return $array;
+						}
+						
+						$json  = json_encode(utf8_converter($rows),JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+						$error = json_last_error();
+						switch (json_last_error()) {
+							case JSON_ERROR_NONE:
+								echo ' - No errors';
+							break;
+							case JSON_ERROR_DEPTH:
+								echo ' - Maximum stack depth exceeded';
+							break;
+							case JSON_ERROR_STATE_MISMATCH:
+								echo ' - Underflow or the modes mismatch';
+							break;
+							case JSON_ERROR_CTRL_CHAR:
+								echo ' - Unexpected control character found';
+							break;
+							case JSON_ERROR_SYNTAX:
+								echo ' - Syntax error, malformed JSON';
+							break;
+							case JSON_ERROR_UTF8:
+								echo ' - Malformed UTF-8 characters, possibly incorrectly encoded';
+							break;
+							default:
+								echo ' - Unknown error';
+							break;
+						}
+						echo $json;
+						
+						
 						
 						$thead = array();
 						$thead[] = '<thead>';
@@ -119,7 +172,7 @@ require_once ('./lib/ReadFileXLS.php');
 						$thead[] = '</thead>';
 
                     ?>
-
+<p>&nbsp;</p>
                         <div class="form-group form-group-lg">
                             <label class="col-sm-2 control-label" for="form_path">Diretorio:</label>
                             <div class="row">
@@ -171,7 +224,8 @@ require_once ('./lib/ReadFileXLS.php');
                         <?php } ?>
                     </ol>
                     </pre>
-                    <?php
+					
+					<?php
 //                        foreach ($html as $k => $v){
 //                            echo '<p>';
 //                            highlight_string($k).'. '.highlight_string($v);

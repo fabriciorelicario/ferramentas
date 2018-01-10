@@ -4,27 +4,45 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+//'625x384' => '<font color="#3276B1">SITE</font> - Slideshow',
 
 $sizesArr = array(
     '426x300' => '<font color="#0D4772">INTRANET</font> - Slideshow',
     '280x150' => '<font color="#0D4772">INTRANET</font> - Destaques',
-    '625x384' => '<font color="#3276B1">SITE</font> - Slideshow',
+	'960x595' => '<font color="#0D4772">INTRANET</font> - Banner',
+	'786x418' => '<font color="#3276B1">SITE</font> - Slideshow',
+	'1180x632' => '<font color="#3276B1">SITE</font> - Banner',
     '435x260' => '<font color="#3276B1">SITE</font> - Cursos Capa',
     '190x230' => '<font color="#3276B1">SITE</font> - Cursos Min',
     '199x115' => 'Newsletter normal',
-    '299x115' => 'Newsletter larga'
+    '299x115' => 'Newsletter larga',
+    '48x48' => 'Toolbar Icon',
+    '16x16' => 'Menu Icon',
+	'297x200' => 'Vacinação H1N1',
+	'600x800' => '600x800 pixels',
+	'600x598' => '600 pixels',
+	'500x500' => '500 pixels',
+	'350x350' => '350 pixels',
+	'256x256' => '256 pixels',
+	'128x128' => '128 pixels',
+	'64x64' => '64 pixels',
+	'64x64' => '64 pixels',
+	'48x48' => '48 pixels',
+	'32x32' => '32 pixels',
+	'24x24' => '24 pixels',
+	'16x16' => '16 pixels'
 );
 
 if(isset($_GET) && $_GET['size'] != ""){
     $sizeGet = $_GET['size'];
 }else{
-    $sizeGet = "426x300";
+    $sizeGet = "800x600";
 }
 
 list($w, $h) = explode("x",$sizeGet);
 ?>
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br" >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=8; IE=9" />
         <meta name="robots" content="noindex" />
@@ -35,9 +53,10 @@ list($w, $h) = explode("x",$sizeGet);
         <link href="css/bootstrap.css" rel="stylesheet" />
         <link href="css/glyphicons.css" rel="stylesheet" />
 
-        <script src="js/jquery.js" type="text/javascript"></script>
-        <script src="js/jquery.cropit.js" type="text/javascript"></script>
-        <script src="js/bootstrap-filestyle.min.js" type="text/javascript"></script>
+		<script src="./js/jquery.js" type="text/javascript"></script>
+		<script src="./js/jquery.cropit.js" type="text/javascript"></script>
+        <script src="./js/bootstrap-filestyle.min.js" type="text/javascript"></script>
+		
 
         
         <style>
@@ -73,6 +92,13 @@ list($w, $h) = explode("x",$sizeGet);
 
               .export {
                 margin-top: 10px;
+              }
+
+              .cropited-image{
+                  margin-left: auto; 
+                  margin-right: auto; 
+                  margin-top:70px;
+                  border: 5px dashed #ccc;
               }
         </style>
 
@@ -135,6 +161,15 @@ list($w, $h) = explode("x",$sizeGet);
                             </div>
                         </div>
                     </div>
+
+                    <hr />
+                    <div class="cropited-image" style="width: <?php echo ($w+11)."px"; ?>; height: <?php echo ($h+11)."px"; ?>;">
+                        <iframe id="manualFrame"
+                            frameborder="0"
+                            style="border:0"
+                            allowfullscreen sandbox>
+                        </iframe> 
+                    <div>
                         
                 </div>
             </div>
@@ -142,15 +177,21 @@ list($w, $h) = explode("x",$sizeGet);
     </body>
 </html>
 
-<script>
+<script type="text/javascript">
       $(function() {
+	  //$(document).ready(function() {
         $('.image-editor').cropit({
-            imageBackground: true
+            imageBackground: true,
+			allowDragNDrop: false
         });
 
         $('.export').click(function() {
-          var imageData = $('.image-editor').cropit('export');
-          window.open(imageData);
+            var imageData = $('.image-editor').cropit('export');
+            var frame = $("#manualFrame");
+            frame.attr("height", '<?php echo $h?>');
+            frame.attr("width", '<?php echo $w?>');
+            frame.attr("src", imageData);
+            //window.open(imageData);
         });
       });
-    </script>
+</script>
